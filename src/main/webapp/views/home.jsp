@@ -165,6 +165,61 @@
       .cta-buttons {
         flex-direction: column;
       }
+      }
+      /* Donation Process Section */
+.donation-process {
+  padding: 80px 20px;
+  background-color: #f7f8fc;
+  text-align: center;
+}
+
+.donation-process h2 {
+  font-size: 2rem;
+  color: #d9534f;
+  margin-bottom: 20px;
+}
+
+.donation-process p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.step {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+  text-align: left;
+}
+
+.step img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+      
     }
   </style>
 </head>
@@ -183,12 +238,31 @@
       </div>
     </div>
   </header>
+<!-- Donation Process Section -->
+<section class="donation-process">
+  <h2>Donation Process</h2>
+  <p>The donation process from the time you arrive at the center until the time you leave</p>
+  
+  <div class="steps">
+    <div class="step">
+      <img src="registration.jpg" alt="Registration Step">
+      <h3>Registration</h3>
+      <p>You need to complete a very simple registration form, which contains all required contact information to enter in the donation process.</p>
+    </div>
+    <div class="step">
+      <img src="screening.jpg" alt="Screening Step">
+      <h3>Screening</h3>
+      <p>A drop of blood from your finger will take for a simple test to ensure that your blood iron levels are proper enough for the donation process.</p>
+    </div>
+    <div class="step">
+      <img src="donation.jpg" alt="Donation Step">
+      <h3>Donation</h3>
+      <p>After ensuring and passing the screening test successfully, you will be directed to a donor bed for donation. It will take only 6-10 minutes.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- About Section -->
-  <section class="about-section" id="about">
-    <h2>About Us</h2>
-    <p>We are a non-profit organization committed to making a positive impact in the lives of those in need. Our team works tirelessly to address various causes, from poverty and hunger to education and healthcare. With your help, we can reach even more people and provide them with the support they deserve.</p>
-  </section>
+
 
   <!-- Decorative Section -->
   <section class="decorative-section">
@@ -197,9 +271,6 @@
     <p><a href="#" class="cta-btn primary-btn">Support Our Mission</a></p>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2024 Donate Today. All rights reserved. | Contact us: info@donatetoday.org</p>
-  </footer>
+<%@include file="footer.jsp" %>
 </body>
 </html>

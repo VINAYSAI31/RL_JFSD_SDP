@@ -98,7 +98,7 @@
 <body>
 <nav class="navbar">
     <div class="logo">
-      <a href="home.jsp">Relief Link</a>
+      <a href="/">Relief Link</a>
     </div>
     <ul class="nav-links">
       <li><a href="#">Home</a></li>
@@ -107,8 +107,8 @@
       <li><a href="#">Contact</a></li>
     </ul>
     <div class="auth-buttons">
-      <a href="views/login.jsp" class="login-btn">Login</a>
-      <a href="views/register.jsp" class="signup-btn">Sign Up</a>
+      <a href="../views/chooserole.jsp" class="login-btn">Login</a>
+      <a href="../views/register.jsp" class="signup-btn">Sign Up</a>
     </div>
   </nav>
 </body>

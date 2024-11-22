@@ -13,7 +13,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 20px;
+      padding-top: 60px;
     }
 
     /* Sidebar Logo */
@@ -38,7 +38,7 @@
     .nav-links a {
       display: flex;
       align-items: center;
-      padding: 15px 20px;
+      padding: 20px 30px;
       color: #ffffff;
       text-decoration: none;
       font-size: 1rem;
@@ -66,11 +66,13 @@
       Donor <!-- Username from backend -->
     </div>
     <div class="nav-links">
-      <a href="#profile"><i class="fas fa-user"></i> Make Profile</a>
+      <a href="../views/donorprofile.jsp"><i class="fas fa-user"></i> My Profile</a>
       <a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
       <a href="#donate"><i class="fas fa-donate"></i> Make a Donation</a>
       <a href="#history"><i class="fas fa-history"></i> Donation History</a>
       <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+          <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a> <!-- Added Logout link -->
+      
     </div>
   </div>
 </body>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donor Dashboard</title>
+  <title>ADMIN DASHBOARD</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -170,14 +170,14 @@
 </head>
 <body>
   <!-- Sidebar -->
-  <%@include file="donornavbar.jsp" %>
+  <%@include file="adminnavbar.jsp" %>
 
   <!-- Main Content -->
   <div class="main-content">
     <div class="card-container">
       <!-- Top Card -->
       <div class="top-card">
-<h2>Hello, ${sessionScope.userName}</h2>
+        <h2>Hello, Username</h2>
         <div class="search-bar">
           <input type="text" placeholder="Search...">
           <i class="fas fa-search"></i>

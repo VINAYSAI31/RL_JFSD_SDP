@@ -1,9 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donor Dashboard</title>
+  <title>ADMIN DASHBOARD</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -166,18 +168,124 @@
     .button-primary:hover {
       background-color: #c0392b;
     }
+
+    /* Main Content Card Styling */
+    .main-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Increased shadow for depth */
+      padding: 30px; /* Added more padding for better spacing */
+      margin-top: 20px; /* More space between elements */
+      transition: transform 0.2s ease, width 0.2s ease;
+      width: 100%;
+      max-width: 600px; /* Restricts width for larger screens */
+      margin-left: auto; /* Centers the card horizontally */
+      margin-right: auto; /* Centers the card horizontally */
+    }
+
+    /* Title in main card */
+    .main-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    /* Form Label */
+    .main-card label {
+      display: block;
+      font-size: 1rem;
+      color: #2c3e50;
+      margin-bottom: 5px;
+      margin-top: 15px;
+    }
+
+    /* Form Input Fields */
+    .main-card input[type="text"],
+    .main-card input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      margin-top: 5px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      color: #2c3e50;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .main-card input[type="text"]:focus,
+    .main-card input[type="password"]:focus {
+      border-color: #e74c3c; /* Focus effect with red border */
+    }
+
+    /* Submit Button */
+    .main-card button {
+      background-color: #e74c3c;
+      color: #ffffff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .main-card button:hover {
+      background-color: #c0392b; /* Darker red on hover */
+    }
+    
+    /* Popup (Modal) Styles */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+      width: 300px;
+    }
+
+    .close {
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <!-- Sidebar -->
-  <%@include file="donornavbar.jsp" %>
+  <%@include file="adminnavbar.jsp" %>
 
   <!-- Main Content -->
   <div class="main-content">
     <div class="card-container">
       <!-- Top Card -->
       <div class="top-card">
-<h2>Hello, ${sessionScope.userName}</h2>
+        <h2>Hello, Username</h2>
         <div class="search-bar">
           <input type="text" placeholder="Search...">
           <i class="fas fa-search"></i>
@@ -187,11 +295,34 @@
         </div>
       </div>
 
-      <!-- Main Card -->
+      <!-- Success/Error Message Popup -->
+      <c:if test="${not empty successMessage}">
+    <script type="text/javascript">
+        alert("${successMessage}");
+    </script>
+</c:if>
+
+<c:if test="${not empty errorMessage}">
+    <script type="text/javascript">
+        alert("${errorMessage}");
+    </script>
+</c:if>
+
+
+      <!-- Form Card to Add Admin -->
       <div class="main-card">
-        <h2>Welcome to your personalized dashboard</h2>
-        <p>Here, you can manage your profile, view your donation history, and make new contributions to our mission.</p>
-        <button class="button-primary">Get Started</button>
+        <h2>Add Admin</h2>
+        <form action="/addadmin" method="POST">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required />
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required />
+            </div>
+            <button type="submit" class="button-primary">Add Admin</button>
+        </form>
       </div>
     </div>
   </div>

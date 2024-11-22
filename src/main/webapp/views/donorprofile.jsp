@@ -132,40 +132,70 @@
     }
 
     /* Main Content Card */
-    .main-card {
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-top: 10px;
-      transition: transform 0.2s ease, width 0.2s ease;
-    }
-
-    .main-card h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: #2c3e50;
-    }
-
-    .main-card p {
-      font-size: 1rem;
-      color: #333;
-    }
-
-    .button-primary {
-      background-color: #e74c3c;
-      color: #ffffff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .button-primary:hover {
-      background-color: #c0392b;
-    }
+     h1 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 1000px;
+            
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .profile-header {
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 20px;
+        }
+        .profile-header img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .profile-header h2 {
+            margin: 10px 0;
+            color: #3498db;
+        }
+        .profile-info {
+            margin: 20px 0;
+        }
+        .profile-info div {
+            margin-bottom: 10px;
+        }
+        .donation-history {
+            margin: 20px 0;
+        }
+        .donation-history table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .donation-history th, .donation-history td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        .donation-history th {
+            background-color: #3498db;
+            color: white;
+        }
+        .btn {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
   </style>
 </head>
 <body>
@@ -188,13 +218,50 @@
       </div>
 
       <!-- Main Card -->
-      <div class="main-card">
-        <h2>Welcome to your personalized dashboard</h2>
-        <p>Here, you can manage your profile, view your donation history, and make new contributions to our mission.</p>
-        <button class="button-primary">Get Started</button>
-      </div>
+      <div class="container">
+    <div class="profile-header">
+        <img src="<%= session.getAttribute("profileImage") %>" alt="Profile Picture">
+        <h2>${sessionScope.userName}</h2>
+        <p>Email: ${sessionScope.userEmail}</p>
+        <p>Member Since: January 2023</p> <!-- You could also dynamically set this if you store the joining date in the session -->
     </div>
-  </div>
+
+    <div class="profile-info">
+        <h3>Profile Information</h3>
+        <div><strong>Name:</strong> ${sessionScope.userName}</div>
+        <div><strong>Email:</strong> ${sessionScope.userEmail}</div>
+        <div><strong>Phone:</strong> ${sessionScope.userPhone}</div>
+        <div><strong>Address:</strong> ${sessionScope.userAddress}</div>
+    </div>
+
+    <div class="donation-history">
+        <h3>Donation History</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Organization</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="donation" items="${sessionScope.donationHistory}">
+                    <tr>
+                        <td>${donation.date}</td>
+                        <td>${donation.organization}</td>
+                        <td>${donation.amount}</td>
+                        <td>${donation.status}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <a href="editProfile.jsp" class="btn">Edit Profile</a>
+    </div>
+</div>
+      
+    
+      
 
   <!-- Font Awesome Icons (for sidebar icons) -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
