@@ -13,5 +13,9 @@ public interface DonorRepository extends JpaRepository<Donor, Integer>{
 	
 	@Query("select d from Donor d where d.email = :email and d.password = :password")
 	public Donor checkdonorlogin(@Param("email") String email, @Param("password") String password);
+	
+	
+	@Query("SELECT d FROM Donor d WHERE d.id = ?1")
+	public Donor getUserById(Integer id);
 
 }
