@@ -18,7 +18,16 @@ public class Campaign {
     private String title;
     private String description;
     private String category;
-    private String required;
+    private String Contributiontype;
+    public String getContributiontype() {
+		return Contributiontype;
+	}
+
+	public void setContributiontype(String contributiontype) {
+		Contributiontype = contributiontype;
+	}
+
+	private String required;
     private String location;
     private String startdate;
     private String enddate;
@@ -150,14 +159,16 @@ public class Campaign {
 
     
 
-    public Campaign(int id, String title, String description, String category, String required, String location,
-			String startdate, String enddate, String email, String status, String imagename, String imagetype,
-			byte[] imagedata, Organization organization) {
+    
+	public Campaign(int id, String title, String description, String category, String contributiontype, String required,
+			String location, String startdate, String enddate, String email, String status, String imagename,
+			String imagetype, byte[] imagedata, Organization organization) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.category = category;
+		Contributiontype = contributiontype;
 		this.required = required;
 		this.location = location;
 		this.startdate = startdate;
