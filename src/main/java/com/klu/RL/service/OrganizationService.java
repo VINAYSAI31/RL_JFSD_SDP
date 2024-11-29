@@ -16,4 +16,6 @@ public interface OrganizationService {
 	public Campaign addcampaign(Campaign campaign,MultipartFile image) throws IOException;
 	public Campaign findbyid(int id);
 	public Organization findbyname(String name);
+	public boolean deletecampbyid(int id);
+	public Campaign updatecampbyid(int id,Campaign camp);
 }

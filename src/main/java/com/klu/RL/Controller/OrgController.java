@@ -12,9 +12,11 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +37,7 @@ public class OrgController {
 	@Autowired
 	OrganizationServiceimp orgser;
 	
+	//Register
 	@PostMapping("/addorg")
 	public ResponseEntity<?> addorg(@RequestBody Organization org) {
 	    try {
@@ -51,6 +54,8 @@ public class OrgController {
 	    }
 	}
 
+	
+	 //login
 	
 	 @PostMapping("/checkorglogin")
 	   public ResponseEntity<?> checkdonorlogin(@RequestBody Organization org)
@@ -69,6 +74,8 @@ public class OrgController {
 		   
 		  
 	   }
+	 
+	 //campaign add
 	 
 	 @PostMapping("/addcampaign")
 	 public ResponseEntity<?> addcampaign(@RequestPart Campaign camp,
@@ -93,15 +100,58 @@ public class OrgController {
 	     }
 	 }
 	 
+	 
+	 //camp by id
+	 
 	 @GetMapping("/campaigndetails/{id}")
 	public Campaign getcampbyid(@PathVariable int id)
 	{
-			Campaign cmp = orgser.findbyid(id);
-		 
-		
-				return cmp;
-			
+			Campaign cmp = orgser.findbyid(id);		 		
+				return cmp;			
 	}
+	
+	 @DeleteMapping("/deletecamp/{id}")
+	public ResponseEntity<?> deletecampbyid(@PathVariable int id)
+	{System.out.println("Recevied request for deleteing campaign");
+		 try {
+			boolean del=orgser.deletecampbyid(id);
+			if(del==true) {
+			return ResponseEntity.ok("Campaign Deleted Succesfully");
+			}
+			else
+			{
+				return (ResponseEntity<?>) ResponseEntity.internalServerError();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			return ResponseEntity.badRequest().body(e.getLocalizedMessage());
+		}
+	}
+	 
+	 
+	 
+	 @PutMapping("updatecamp/{id}")
+	 public boolean updatedonor(@PathVariable Integer id,@RequestBody Campaign camp)
+	 
+	 {
+		 try {
+			orgser.updatecampbyid(id, camp);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e.getLocalizedMessage());
+			
+			return false;
+		}
+		 
+	 }
+	 
+	 @GetMapping("/getcampbyorgid/{id}")
+	 public Campaign getcampbyorgid(int id)
+	 {
+		 
+		 
+	 }
 
 		
 }

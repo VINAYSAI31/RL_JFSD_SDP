@@ -58,6 +58,77 @@ public class OrganizationServiceimp implements OrganizationService{
 		return orgrepo.findbyname(name);
 	}
 
+	@Override
+	public boolean deletecampbyid(int id) {
+		// TODO Auto-generated method stub
+		try {
+			 camprepo.deleteById(id);
+			 return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e.getLocalizedMessage());
+			return false;
+		}
+	}
+
+	@Override
+	public Campaign updatecampbyid(int id, Campaign camp) {
+	    try {
+	        // Retrieve the current campaign by ID
+	        Campaign curr = camprepo.findById(id).get();
+	        if (curr == null) {
+	            // Handle case where the campaign is not found
+	            throw new RuntimeException("Campaign not found with ID: " + id);
+	        }
+
+	        // Update fields if new values are not null
+	        if (camp.getTitle() != null) {
+	            curr.setTitle(camp.getTitle());
+	        }
+	        if (camp.getDescription() != null) {
+	            curr.setDescription(camp.getDescription());
+	        }
+	        if (camp.getCategory() != null) {
+	            curr.setCategory(camp.getCategory());
+	        }
+	        if (camp.getRequired() != null) {
+	            curr.setRequired(camp.getRequired());
+	        }
+	        if (camp.getLocation() != null) {
+	            curr.setLocation(camp.getLocation());
+	        }
+	        if(camp.getStatus()!=null){
+	        	curr.setStatus(camp.getStatus());
+	        }
+	        if (camp.getStartdate() != null) {
+	            curr.setStartdate(camp.getStartdate());
+	        }
+	        if (camp.getEnddate() != null) {
+	            curr.setEnddate(camp.getEnddate());
+	        }
+	        if (camp.getEmail() != null) {
+	            curr.setEmail(camp.getEmail());
+	        }
+	        if (camp.getImagename() != null) {
+	            curr.setImagename(camp.getImagename());
+	        }
+	        if (camp.getImagetype() != null) {
+	            curr.setImagetype(camp.getImagetype());
+	        }
+	        if (camp.getImagedata() != null) {
+	            curr.setImagedata(camp.getImagedata());
+	        }
+
+	        // Save updated campaign back to repository
+	        camprepo.save(curr);
+	        return curr;
+	    } catch (Exception e) {
+	        // Log the error (use a logging framework in a real app)
+	        System.err.println("Error updating campaign: " + e.getMessage());
+	        return null;
+	    }
+	}
+
 	
 
 }

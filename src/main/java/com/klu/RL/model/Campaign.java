@@ -22,7 +22,16 @@ public class Campaign {
     private String startdate;
     private String enddate;
     private String email;
-    private String imagename;
+    private String status;
+    public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	private String imagename;
     private String imagetype;
 
     @Lob
@@ -137,24 +146,28 @@ public class Campaign {
         this.organization = organization;
     }
 
-    public Campaign(int id, String title, String description, String category, String required, String location,
-                    String startdate, String enddate, String email, String imagename, String imagetype, byte[] imagedata, Organization organization) {
-        super();
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.category = category;
-        this.required = required;
-        this.location = location;
-        this.startdate = startdate;
-        this.enddate = enddate;
-        this.email = email;
-        this.imagename = imagename;
-        this.imagetype = imagetype;
-        this.imagedata = imagedata;
-        this.organization = organization;
-    }
+    
 
-    public Campaign() {
+    public Campaign(int id, String title, String description, String category, String required, String location,
+			String startdate, String enddate, String email, String status, String imagename, String imagetype,
+			byte[] imagedata, Organization organization) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.category = category;
+		this.required = required;
+		this.location = location;
+		this.startdate = startdate;
+		this.enddate = enddate;
+		this.email = email;
+		this.status = status;
+		this.imagename = imagename;
+		this.imagetype = imagetype;
+		this.imagedata = imagedata;
+		this.organization = organization;
+	}
+
+	public Campaign() {
     }
 }
