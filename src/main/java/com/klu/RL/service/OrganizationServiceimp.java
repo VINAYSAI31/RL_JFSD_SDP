@@ -1,6 +1,7 @@
 package com.klu.RL.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -127,6 +128,12 @@ public class OrganizationServiceimp implements OrganizationService{
 	        System.err.println("Error updating campaign: " + e.getMessage());
 	        return null;
 	    }
+	}
+
+	@Override
+	public List<Campaign> getcampbyorgid(int id) {
+		
+		return camprepo.findCampByOrgId(id);
 	}
 
 	

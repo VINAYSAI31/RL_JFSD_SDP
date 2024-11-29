@@ -1,6 +1,7 @@
 package com.klu.RL.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,4 +19,5 @@ public interface OrganizationService {
 	public Organization findbyname(String name);
 	public boolean deletecampbyid(int id);
 	public Campaign updatecampbyid(int id,Campaign camp);
+	public List<Campaign> getcampbyorgid(int id);
 }

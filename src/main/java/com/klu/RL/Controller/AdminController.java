@@ -29,7 +29,7 @@ import com.klu.RL.service.DonorServiceImp;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@CrossOrigin(origins = "http://localhost:3000") 
+@CrossOrigin("*") 
 @RestController
 @RequestMapping("/admin/api")
 public class AdminController {

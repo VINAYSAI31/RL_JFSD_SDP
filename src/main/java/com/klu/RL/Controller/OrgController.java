@@ -3,6 +3,7 @@ package com.klu.RL.Controller;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.antlr.v4.runtime.atn.SemanticContext.OR;
@@ -147,9 +148,9 @@ public class OrgController {
 	 }
 	 
 	 @GetMapping("/getcampbyorgid/{id}")
-	 public Campaign getcampbyorgid(int id)
+	 public List<Campaign> getcampbyorgid(@PathVariable int id)
 	 {
-		 
+		 return orgser.getcampbyorgid(id);
 		 
 	 }
 

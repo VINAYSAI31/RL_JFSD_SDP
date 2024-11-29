@@ -1,5 +1,6 @@
 package com.klu.RL.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,6 +36,7 @@ public class Campaign {
     private String imagetype;
 
     @Lob
+    @Column(name = "imagedata", columnDefinition = "LONGBLOB")
     private byte[] imagedata;
 
     // New field for the relationship
