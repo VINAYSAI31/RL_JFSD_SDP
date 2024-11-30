@@ -11,6 +11,8 @@ import com.klu.RL.model.Donor;
 import com.klu.RL.repository.CampaignRepository;
 import com.klu.RL.repository.DonorRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class DonorServiceImp implements DonorService{
 
@@ -30,6 +32,7 @@ public class DonorServiceImp implements DonorService{
 		// TODO Auto-generated method stub
 		
 		return donorRepository.checkdonorlogin(demail, dpwd);
+		
 		
 	}
 

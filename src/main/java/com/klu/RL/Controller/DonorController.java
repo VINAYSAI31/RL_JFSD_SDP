@@ -25,7 +25,7 @@ import com.klu.RL.service.OrganizationServiceimp;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-@CrossOrigin("*") 
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RestController
 @RequestMapping("/donor/api")
 public class DonorController {
@@ -78,24 +78,49 @@ public class DonorController {
     }
 	
 	
-	 @PostMapping("/checkdonorlogin")
-	   public ResponseEntity<?> checkdonorlogin(@RequestBody Donor donor)
-	   {
-		 System.out.println("Received details "+donor);
-		  String demail=donor.getEmail();
-		  String dpwd=donor.getPassword();
-		   Donor dono=donorserviceimp.checkdonorlogin(demail, dpwd);
-		   if (dono != null) {
-		        System.out.println("Login successful for user: " + demail);
-		        return ResponseEntity.ok(dono);
-		    } else {
-		        System.out.println("Login failed for user: " + demail);
-		        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-		    }
-		   
-		  
-	   }
-		   
+	@PostMapping("/checkdonorlogin")
+	public ResponseEntity<?> checkdonorlogin(@RequestBody Donor donor, HttpSession session) {
+	    System.out.println("Received details: " + donor);
+
+	    // Check login credentials via the service
+	    Donor loggedInDonor = donorserviceimp.checkdonorlogin(donor.getEmail(), donor.getPassword());
+
+	    // If valid credentials, save donor information in the session
+	    if (loggedInDonor != null) {
+	        session.setAttribute("loggedInDonor", loggedInDonor);
+	        System.out.println("Session ID: " + session.getId());
+
+	        System.out.println("Session created for donor: " + loggedInDonor.getEmail());
+	        return ResponseEntity.ok(loggedInDonor);
+	    } else {
+	        // Invalid credentials, return an unauthorized response
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+	    }
+	}
+
+     
+	@GetMapping("/getLoggedInDonor")
+	public ResponseEntity<?> getLoggedInDonor(HttpSession session) {
+	    // Retrieve the donor details from the session
+	    Donor loggedInDonor = (Donor) session.getAttribute("loggedInDonor");
+
+	    if (loggedInDonor != null) {
+	        // Return user details
+	        return ResponseEntity.ok(loggedInDonor);
+	    } else {
+	        // No user logged in
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No user logged in");
+	    }
+	}
+
+	
+	
+	 @PostMapping("/logout")
+	    public ResponseEntity<?> logout(HttpSession session) {
+	        session.invalidate(); // Invalidate the session
+	        System.out.println("loggedout for user"+session.getId());
+	        return ResponseEntity.ok("Logout successful");
+	    }
 	 
 	 @GetMapping("getallcamps")
 	 public List<Campaign> getallcamp()

@@ -30,7 +30,9 @@ import com.klu.RL.model.Donor;
 import com.klu.RL.model.Organization;
 import com.klu.RL.service.OrganizationServiceimp;
 
-@CrossOrigin("*")
+import jakarta.servlet.http.HttpSession;
+
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RestController
 @RequestMapping("org/api")
 public class OrgController {
@@ -59,22 +61,45 @@ public class OrgController {
 	 //login
 	
 	 @PostMapping("/checkorglogin")
-	   public ResponseEntity<?> checkdonorlogin(@RequestBody Organization org)
+	   public ResponseEntity<?> checkdonorlogin(@RequestBody Organization org,HttpSession session)
 	   {
-		 System.out.println("Received details "+org);
-		  String oemail=org.getEmail();
-		  String opwd=org.getPassword();
-		   Organization orga=orgser.checkorganizationlogin(oemail, opwd);
+		
+		   Organization orga=orgser.checkorganizationlogin(org.getEmail(), org.getPassword());
 		   if (orga != null) {
-		        System.out.println("Login successful for user: " + oemail);
+		        session.setAttribute("loggedInOrganization", orga);
+		        System.out.println("Session created for org: " + orga.getEmail());
 		        return ResponseEntity.ok(org);
+		        
 		    } else {
-		        System.out.println("Login failed for user: " + oemail);
+		        System.out.println("Login failed for user: " + org.getEmail());
 		        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
 		    }
 		   
 		  
 	   }
+	 
+	 
+	 
+	 @GetMapping("/getLoggedInorg")
+		public ResponseEntity<?> getLoggedInOrg(HttpSession session) {
+		    // Retrieve the donor details from the session
+		    Organization loggedInOrg = (Organization) session.getAttribute("loggedInOrganization");
+
+		    if (loggedInOrg != null) {
+		        // Return user details
+		        return ResponseEntity.ok(loggedInOrg);
+		    } else {
+		        // No user logged in
+		        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No user logged in");
+		    }
+		}
+
+	 @PostMapping("/logout")
+	    public ResponseEntity<?> logout(HttpSession session) {
+	        session.invalidate(); // Invalidate the session
+	        System.out.println("loggedout for user"+session.getId());
+	        return ResponseEntity.ok("Logout successful");
+	    }
 	 
 	 //campaign add
 	 

@@ -10,6 +10,8 @@ import com.klu.RL.model.Campaign;
 import com.klu.RL.model.Donor;
 import com.klu.RL.repository.DonorRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public interface DonorService {
 
