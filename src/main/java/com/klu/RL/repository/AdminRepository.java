@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.klu.RL.model.Admin;
 
 @Repository
-public interface AdminRepository extends JpaRepository<Admin, String>{
+public interface AdminRepository extends JpaRepository<Admin, Integer>{
 
 	@Query("select a from Admin a where a.username=?1 and a.password=?2")
 	public Admin checkAdminLogin(String uname,String pwd);

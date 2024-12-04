@@ -1,5 +1,7 @@
 package com.klu.RL.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.klu.RL.model.Donation;
@@ -8,4 +10,5 @@ import com.klu.RL.model.Donation;
 public interface DonationService {
 
 	public Donation savedonation(Donation donation);
+	public List<Donation> getDonationsByDonorName(String donorName);
 }

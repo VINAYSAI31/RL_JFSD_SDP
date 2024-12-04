@@ -10,64 +10,71 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "donor_id", nullable = false)
-    private Donor donor;
-
+    private String donorName; // New field for donor name
+    private String campaignName; ;
+    
     private Double amount;
+    private LocalDateTime timestamp;
+   ;
+    
+    public Donation() {}
 
-    private String purpose;
+	public int getId() {
+		return id;
+	}
 
-    private LocalDateTime donationDate;
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    private String status; // e.g., "Completed", "Pending"
+	public String getDonorName() {
+		return donorName;
+	}
 
-    // Getters and Setters
-    public int getId() {
-        return id;
-    }
+	public void setDonorName(String donorName) {
+		this.donorName = donorName;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public String getCampaignName() {
+		return campaignName;
+	}
 
-    public Donor getDonor() {
-        return donor;
-    }
+	public void setCampaignName(String campaignName) {
+		this.campaignName = campaignName;
+	}
 
-    public void setDonor(Donor donor) {
-        this.donor = donor;
-    }
+	public Double getAmount() {
+		return amount;
+	}
 
-    public Double getAmount() {
-        return amount;
-    }
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
+	public LocalDateTime getTimestamp() {
+		return timestamp;
+	}
 
-    public String getPurpose() {
-        return purpose;
-    }
+	public void setTimestamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
+	}
 
-    public void setPurpose(String purpose) {
-        this.purpose = purpose;
-    }
 
-    public LocalDateTime getDonationDate() {
-        return donationDate;
-    }
 
-    public void setDonationDate(LocalDateTime donationDate) {
-        this.donationDate = donationDate;
-    }
+	public Donation(int id, String donorName, String campaignName, Double amount, LocalDateTime timestamp
+			) {
+		super();
+		this.id = id;
+		this.donorName = donorName;
+		this.campaignName = campaignName;
+		this.amount = amount;
+		this.timestamp = timestamp;
+		
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	
+   
+   
 }

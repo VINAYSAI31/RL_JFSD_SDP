@@ -1,5 +1,7 @@
 package com.klu.RL.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,11 @@ public class DonationServiceImp implements DonationService{
 			
 				
 		
+	}
+
+	@Override
+	public List<Donation> getDonationsByDonorName(String donorName) {
+		  return donationrepo.findByDonorName(donorName);
 	}
 
 }

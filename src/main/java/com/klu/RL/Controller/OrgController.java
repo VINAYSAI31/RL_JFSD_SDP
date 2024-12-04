@@ -33,6 +33,7 @@ import com.klu.RL.service.OrganizationServiceimp;
 import jakarta.servlet.http.HttpSession;
 
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+//@CrossOrigin("*")
 @RestController
 @RequestMapping("org/api")
 public class OrgController {
@@ -178,6 +179,9 @@ public class OrgController {
 		 return orgser.getcampbyorgid(id);
 		 
 	 }
+	 
+
+
 
 		
 }
