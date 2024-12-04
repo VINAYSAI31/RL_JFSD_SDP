@@ -12,7 +12,7 @@ import java.util.Map;
 @RequestMapping("/api/payment")
 public class PaymentController {
     static {
-        Stripe.apiKey = "sk_test_51O8oHhSAo6Ac8f4rdDw0Rll23kKOqBT1TysLIexywXeZh1fnMbKUTZ2w2f4hNyMnM25TcCUkOoOd7X0wHh8wq98H001Tnsa1Of"; // Replace with your actual Stripe secret key
+        Stripe.apiKey = ; // Replace with your actual Stripe secret key
     }
 
     @PostMapping("/create-payment-intent")
