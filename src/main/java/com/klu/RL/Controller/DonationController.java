@@ -26,9 +26,10 @@ public class DonationController {
 	
 	@PostMapping("/adddonation")
 	public ResponseEntity<?> addDonation(@RequestBody Donation donation) {
+		System.out.println("received adddonation req");
 	    try {
 	        // Validate input
-	        if (donation.getDonorName() == null || donation.getCampaignName() == null || donation.getAmount() == null || donation.getAmount() <= 0) {
+	        if (donation.getDonorName() == null || donation.getCampaignName() == null || donation.getAmount() == null ) {
 	            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 	                .body("Invalid donation details. Donor name, campaign name, and valid amount are required.");
 	        }

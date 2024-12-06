@@ -136,6 +136,12 @@ public class OrganizationServiceimp implements OrganizationService{
 		return camprepo.findCampByOrgId(id);
 	}
 
+	@Override
+	public Organization findorgbyid(int id) {
+		// TODO Auto-generated method stub
+		return orgrepo.findById(id).get();
+	}
+
 	
 
 }

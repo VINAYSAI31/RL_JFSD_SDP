@@ -180,6 +180,13 @@ public class OrgController {
 		 
 	 }
 	 
+	 
+	 @GetMapping("/getorgbyid/{id}")
+	public Organization getorgbyid(@PathVariable int id)
+	{
+			Organization org = orgser.findorgbyid(id);		 		
+				return org;			
+	}
 
 
 

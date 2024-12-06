@@ -20,4 +20,5 @@ public interface OrganizationService {
 	public boolean deletecampbyid(int id);
 	public Campaign updatecampbyid(int id,Campaign camp);
 	public List<Campaign> getcampbyorgid(int id);
+	public Organization findorgbyid(int id);
 }
